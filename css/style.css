@@ -1,0 +1,9 @@
+body {
+    padding: 0px;
+    margin: 0px;
+}
+label {
+    display: inline-block;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
