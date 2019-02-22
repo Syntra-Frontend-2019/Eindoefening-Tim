@@ -246,6 +246,7 @@
             while (lstsubscribers.firstChild) {
                 lstsubscribers.removeChild(lstsubscribers.firstChild);
             }
+            subscribers = subscribers.reverse();
                 for (var i = 0; i < subscribers.length; i++) {
                 subscriber = subscribers[i];
                 var new_li = document.createElement("li");
