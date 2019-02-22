@@ -171,8 +171,7 @@
                     <input type="radio" name="gender" id="other" required>Other
                 </div>
                 <div class="input">
-                        <input type="submit" value="Add" id="button">
-                    <!-- <a href="#">Add</a> -->
+                    <input type="submit" value="Add" id="button">
                 </div>
             </form>
         </section>
@@ -237,7 +236,7 @@
                 //birthdayyear: birthdayyear.value,
                 gender: gender
             }
-            subscribers.push(subscriber);
+            subscribers.unshift(subscriber); //Toevoegen aan het begin van de array
             console.log(subscribers);
             listToHTML();
         }
@@ -246,7 +245,6 @@
             while (lstsubscribers.firstChild) {
                 lstsubscribers.removeChild(lstsubscribers.firstChild);
             }
-            subscribers = subscribers.reverse();
                 for (var i = 0; i < subscribers.length; i++) {
                 subscriber = subscribers[i];
                 var new_li = document.createElement("li");
