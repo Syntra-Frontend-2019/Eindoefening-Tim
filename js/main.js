@@ -70,7 +70,7 @@ function listToHTML() {
 function getData() {
     $.ajax({
         type: "GET",
-        url: 'https://cors-anywhere.herokuapp.com/http://vanloocke.synology.me:1880/frontend-get',
+        url: 'https://cors-anywhere.herokuapp.com/https://vanloocke.synology.me:1880/frontend-get',
         //async: false
         })
     .done(function(reply){
@@ -82,7 +82,7 @@ function getData() {
 function postData(data) {
     $.ajax({
         type: 'POST',
-        url: 'http://vanloocke.synology.me:1880/frontend-post',
+        url: 'https://vanloocke.synology.me:1880/frontend-post',
         data: data 
     });
 }   
