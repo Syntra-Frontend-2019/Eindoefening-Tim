@@ -81,4 +81,6 @@ li *{
     ul:first-child{
         margin-top: 1em;
     }
+    form{
+        visibility: hidden    }
  } 

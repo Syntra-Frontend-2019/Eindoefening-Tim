@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MNDR TNDR Tim</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
+    </script>
 </head>
 <body>
     <header>
@@ -179,98 +182,6 @@
             <ul id="lstSubscribers"></ul>
         </section>
     </main>
-    <script>
-        var name2 = document.querySelector("#name2");
-        var birthdayday = document.querySelector("#day");
-        var birthdaymonth = document.querySelector("#month");
-        var birthdayyear = document.querySelector("#year");
-        //var gender = document.getElementsByName("gender");
-        var male = document.querySelector("#male");
-        var female = document.querySelector("#female");
-        var other = document.querySelector("#other");
-        var lstsubscribers = document.querySelector("#lstSubscribers")
-        var subscriber;
-        var subscribers = [{
-            name: "Tim Vanloocke",
-            birthday: "24/06/1985",
-            gender: "male"
-        },{
-            name: "Janne Ryngaert",
-            birthday: "07/07/1987",
-            gender: "female"
-        },{
-            name: "Unknown Unknown",
-            birthday: "24/6/1985",
-            gender: "other"
-        },{
-            name: "Tim Vanloocke",
-            birthday: "24/6/1985",
-            gender: "male"
-        },{
-            name: "Janne Ryngaert",
-            birthday: "07/07/1987",
-            gender: "female"
-        },{
-            name: "Unknown Unknown",
-            birthday: "24/6/1985",
-            gender: "other"
-        }];
-        //document.querySelector("button").addEventListener("click", addSubscriber);
-
-        male.addEventListener("click", setGender);
-        female.addEventListener("click", setGender);
-        other.addEventListener("click", setGender);
-
-        function setGender() {
-            gender = event.target.id;
-            console.log(gender);
-        }
-
-        function addSubscriber() {
-            subscriber = {
-                name: name2.value,
-                birthday: birthdayday.value + "/" + birthdaymonth.value + "/" + birthdayyear.value,
-                //birthday: function() {this.birthdayday + "/" + this.birthdaymonth + "/" + this.birthdayyear},
-                //birthdayday: birthdayday.value,
-                //birthdaymonth: birthdaymonth.value,
-                //birthdayyear: birthdayyear.value,
-                gender: gender
-            }
-            subscribers.unshift(subscriber); //Toevoegen aan het begin van de array
-            console.log(subscribers);
-            listToHTML();
-        }
-
-        function listToHTML() {
-            while (lstsubscribers.firstChild) {
-                lstsubscribers.removeChild(lstsubscribers.firstChild);
-            }
-                for (var i = 0; i < subscribers.length; i++) {
-                subscriber = subscribers[i];
-                var new_li = document.createElement("li");
-                var new_name = document.createElement("b");
-                var new_date = document.createElement("span");
-                //var new_date = document.createTextNode(" " + subscribers[i].birthday);
-                new_date.innerHTML = subscriber.birthday;
-                new_name.innerHTML = subscribers[i].name;
-                new_li.appendChild(new_name);
-                new_li.appendChild(new_date);
-                lstsubscribers.appendChild(new_li);
-                if (subscriber.gender == "male")  {
-                    new_li.style.backgroundColor = "rgba(0, 17, 255, 0.5)";
-                    new_li.style.borderColor = "rgba(0, 17, 255, 1)";
-                    }
-                else if (subscriber.gender == "female")  {
-                    new_li.style.backgroundColor = "rgba(255, 0, 179, 0.5)";
-                    new_li.style.borderColor = "rgba(255, 0, 179, 1)";
-                    }
-                else if (subscriber.gender == "other")  {
-                    new_li.style.backgroundColor = "rgba(94, 94, 94, 0.5)";
-                    new_li.style.borderColor = "rgba(94, 94, 94, 1)";
-                    }
-            }
-        }
-        listToHTML();
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
