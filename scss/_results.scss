@@ -1,0 +1,37 @@
+ul{
+    margin: 0em;
+    display: flex;
+    flex-flow: row wrap;
+    color: $fontcolor;
+    /* align-items: stretch; */
+}
+li{
+    /* flex-grow: 1; */
+    @include rounded(20px);
+    flex-basis: 1;
+    padding: 1em;
+    margin: 0 1em 1em 1em;
+    min-width: 20em;
+    list-style: none;
+    border: 0.3em solid;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+li div.divData{
+    // width: 50%;
+}
+button{
+    border: none;
+    background-color: grey;
+    padding: 1em;
+}
+.fa-trash{
+    color: white;
+    font-size: 20px;
+}
+.divData{
+    content: "test";
+}
