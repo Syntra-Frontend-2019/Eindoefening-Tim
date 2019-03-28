@@ -1,59 +1,54 @@
+// Variabelen creëren met javascript:
+
 var name2 = document.querySelector("#name2");
 var birthdayday = document.querySelector("#day");
 var birthdaymonth = document.querySelector("#month");
 var birthdayyear = document.querySelector("#year");
-//var gender = document.getElementsByName("gender");
 var male = document.querySelector("#male");
 var female = document.querySelector("#female");
 var other = document.querySelector("#other");
 var lstsubscribers = document.querySelector("#lstSubscribers");
 var subscriber;
 var subscribers;
+
+// data voor de eerste keer opvragen
 getData();
+
+// event Listeners toevoegen op form elementen (kan ook met document.querySelector("#male").checked methode)
 male.addEventListener("click", setGender);
 female.addEventListener("click", setGender);
 other.addEventListener("click", setGender);
-// $(".removeButton").on("click", removeItem);
-var testdiv = $("<div>");
-testdiv.addClass("divData");
-$(".test").append(testdiv);
-// $(".test").append("<div>").addClass("divData");
-// $('body').append('<div>')
 
+// functie om gender in te stellen nadat er een gender geselecteerd is
 function setGender() {
     gender = event.target.id;
-    // console.log(gender);
 }
 
+// functie om een subscriber in json formaat om te zetten
 function addSubscriber() {
     subscriber = {
         name: name2.value,
         birthday: birthdayday.value + "/" + birthdaymonth.value + "/" + birthdayyear.value,
-        //birthday: function() {this.birthdayday + "/" + this.birthdaymonth + "/" + this.birthdayyear},
-        //birthdayday: birthdayday.value,
-        //birthdaymonth: birthdaymonth.value,
-        //birthdayyear: birthdayyear.value,
         gender: gender
-    }
-    //subscribers.unshift(subscriber); //Toevoegen aan het begin van de array
-    postData(subscriber);
-    // console.log(subscribers);
-    getData();
+    };
+    postData(subscriber); // data doorsturen via ajax POST methode
 }
 
+//
 function listToHTML() {
     while (lstsubscribers.firstChild) {
         lstsubscribers.removeChild(lstsubscribers.firstChild);
     }
         for (var i = 0; i < subscribers.length; i++) {
-        subscriber = subscribers[i];
+        subscriber = subscribers[i]; // huidig item ophalen
+
+        // elementen voor in subscriber item aanmaken (jquery en javascript methodes door elkaar)
         var new_li = document.createElement("li");
+        new_li.setAttribute("id", subscriber._id);
         var divRemove = $("<div>");
         divRemove.addClass("divRemove");
         var divData = document.createElement("div");
-        // var divData = $("<div>");
         $(divData).addClass("divData");
-        new_li.setAttribute("id", subscriber._id);
         var removeButton = document.createElement("button");
         removeButton.setAttribute("class", "removeButton");
         var removeIcon = document.createElement("i");
@@ -61,20 +56,18 @@ function listToHTML() {
         removeIcon.setAttribute("aria-hidden", "true");
         var new_name = document.createElement("b");
         var new_date = document.createElement("span");
-        //var new_date = document.createTextNode(" " + subscribers[i].birthday);
+
+        // Data toevoegen aan subscriber item
         new_date.innerHTML = subscriber.birthday;
         new_name.innerHTML = subscribers[i].name;
-        $(divData).append(new_name);
-        $(divData).append("<br>");
-        $(divData).append(new_date);
+        $(divData).append(new_name).append("<br>").append(new_date);
         $(divRemove).append(removeButton);
-        $(new_li).append(divData);
-        $(new_li).append(divRemove);
-        // new_li.appendChild(new_date);
-        // new_li.appendChild(removeButton);
+        $(new_li).append(divData).append(divRemove);
         removeButton.appendChild(removeIcon);
         lstsubscribers.appendChild(new_li);
         $(removeButton).on("click", removeItem);
+
+        // kleuren instellen per gender
         if (subscriber.gender == "male")  {
             new_li.style.backgroundColor = "rgba(0, 17, 255, 0.5)";
             new_li.style.borderColor = "rgba(0, 17, 255, 1)";
@@ -88,8 +81,6 @@ function listToHTML() {
             new_li.style.borderColor = "rgba(94, 94, 94, 1)";
             }
     }
-
-
 }
 
 function removeItem(){
@@ -102,15 +93,10 @@ function removeItem(){
         datatype: 'json',
         data: {"_id": itemID}
     }).fail(function() {
-        // alert( "error" );
     }).always(function() {
-        // alert( "complete" );
     }).done(function(){
-        // alert( "success" );
-        // console.log(data);
-        // getData();
+        $("#" + itemID).remove();
     });
-    $("#" + itemID).remove();
 }
 
 function getData() {
@@ -129,6 +115,9 @@ function postData(data) {
         type: 'POST',
         url: 'https://vanloocke.synology.me:1880/frontend-post',
         data: data 
+    })
+    .done(function(){
+        getData(); // data refreshen nadat de post gebeurd is
     });
 }   
 

@@ -50,37 +50,27 @@ body {
         color: rgb(255, 255, 255);
         padding: 0.5em;
     }
-    .result{
-        /* flex-grow: 1; */
-        /* width: 70%; */
-    }
     label {
         /* display: inline-block; */
         font-weight: bold;
         padding-bottom: 1em;
     }
-    
 }
 
 
  @media (max-width: 689px) {
-body{
-    header{
-    }
-    .result ul{
-        padding-left: 0em;
-    }
-    .result ul, li{
-        margin-left: 0em;
-    }
-    main{
-        flex-flow: column nowrap;
-    }
-    ul:first-child{
-        margin-top: 1em;
-    }
-    form{
-        // visibility: hidden    
-    }
+    body{
+        .result ul{
+            padding-left: 0em;
+        }
+        .result ul, li{
+            margin-left: 0em;
+        }
+        main{
+            flex-flow: column nowrap;
+        }
+        ul:first-child{
+            margin-top: 1em;
+        }
     }
 }
