@@ -102,13 +102,13 @@ function removeItem(){
         datatype: 'json',
         data: {"_id": itemID}
     }).fail(function() {
-        alert( "error" );
+        // alert( "error" );
     }).always(function() {
-        alert( "complete" );
+        // alert( "complete" );
     }).done(function(){
-        alert( "success" );
+        // alert( "success" );
         // console.log(data);
-        getData();
+        // getData();
     });
     $("#" + itemID).remove();
 }
